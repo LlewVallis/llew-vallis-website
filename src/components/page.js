@@ -9,9 +9,7 @@ const Page = ({ children }) => (
       <title>Llew Vallis</title>
     </Helmet>
 
-    <main>
-      {children}
-    </main>
+    {children}
   </>
 );
 
