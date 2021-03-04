@@ -1,6 +1,11 @@
-import * as React from "react";
-import Page from "../components/page";
+import React from "react";
+import Page from "../page";
+import Home from "../home/home";
 
-const IndexPage = () => <Page>Hi, I'm Llew.</Page>;
+const IndexPage = () => (
+  <Page>
+    <Home />
+  </Page>
+);
 
 export default IndexPage;
