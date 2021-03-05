@@ -9,11 +9,15 @@ import "./top-panel.scss";
 
 const TopPanel = () => (
   <Backdrop>
-    <img className="portrait" src={Portrait} />
+    <div className="backdrop-content">
+      <div className="greeting">
+        <Heading />
+        <SocialLinks />
+      </div>
 
-    <div className="backdrop-content centering-container">
-      <Heading />
-      <SocialLinks />
+      <div className="backdrop-content-breaker" />
+
+      <img className="portrait" src={Portrait} alt="" />
     </div>
   </Backdrop>
 );

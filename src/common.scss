@@ -1,7 +1,7 @@
 @import "./theme.scss";
 
 @import "/node_modules/normalize.css/normalize.css";
-@import url("https://fonts.googleapis.com/css2?family=Fredoka+One&family=Roboto:ital@1&family=Source+Code+Pro&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Fredoka+One&family=Roboto&family=Source+Code+Pro&display=swap");
 
 body {
   font-family: $font;
@@ -11,7 +11,7 @@ body {
 
 h1 {
   font-family: $displayFont;
-  font-size: 5rem;
+  font-size: 4rem;
   margin-bottom: 1.2rem;
 }
 
@@ -23,11 +23,4 @@ a {
 
 a:hover {
   text-decoration: underline;
-}
-
-.centering-container {
-  display: flex;
-  padding: 0 $margin;
-  flex-direction: column;
-  justify-content: center;
 }
