@@ -1,0 +1,29 @@
+@import "../../theme.scss";
+
+.backdrop-content {
+  height: 80%;
+}
+
+.social-links {
+  color: $linkColor;
+  font-family: $monospaceFont;
+}
+
+.social-link-line {
+  width: fit-content;
+  margin-bottom: 5px;
+  padding: 0px 5px 5px 5px;
+  background: linear-gradient(to bottom, transparent 5%, $color 5%);
+  border-radius: 5px;
+}
+
+.social-link {
+  margin-left: 4px;
+}
+
+.portrait {
+  position: absolute;
+  width: 20vw;
+  right: $margin;
+  bottom: 12%;
+}

@@ -1,6 +1,6 @@
 import React from "react";
-import WelcomePanel from "./welcome-panel";
+import TopPanel from "./top-panel/top-panel";
 
-const Home = () => <WelcomePanel />;
+const Home = () => <TopPanel />;
 
 export default Home;

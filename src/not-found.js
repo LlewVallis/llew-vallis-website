@@ -2,11 +2,11 @@ import React from "react";
 import { Link } from "gatsby";
 
 const NotFound = () => (
-  <div className="center-of-page-container">
+  <div style={{ height: "60vh" }} className="center-of-page-container">
     <h1>Uh oh, 404</h1>
-    <div>
-      This route doesn't exist, <Link to="/">click here</Link> to go home
-    </div>
+    <b>
+      This page doesn't exist, <Link to="/">click here</Link> to go home
+    </b>
   </div>
 );
 

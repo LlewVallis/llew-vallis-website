@@ -1,0 +1,24 @@
+@import "../../theme.scss";
+
+$backdropSize: 50vh;
+
+.backdrop {
+  height: $backdropSize;
+  clip-path: url(#backdrop-clip);
+}
+
+.backdrop-shadow {
+  background-color: $darkAccentColor;
+  width: 100%;
+  height: $backdropSize;
+  position: absolute;
+  top: 3px;
+  left: 0px;
+  clip-path: url(#backdrop-clip);
+}
+
+.clip-path-svg {
+  position: absolute;
+  width: 0;
+  height: 0;
+}
