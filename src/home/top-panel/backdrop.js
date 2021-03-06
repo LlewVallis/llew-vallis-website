@@ -108,10 +108,14 @@ const BackdropCanvas = ({ size, mouseMovePublisher }) => {
     };
   }, [mouseMovePublisher]);
 
+  const classNames = `backdrop-canvas ${
+    size.width ? "" : "backdrop-canvas-initializing"
+  }`;
+
   return (
     <canvas
       ref={canvasRef}
-      className="backdrop-canvas"
+      className={classNames}
       width={`${size.width}`}
       height={`${size.height}`}
     />

@@ -14,6 +14,7 @@
   },
   "dependencies": {
     "@primer/octicons-react": "^12.1.0",
+    "emailjs-com": "^2.6.4",
     "frontmatter-markdown-loader": "^3.6.2",
     "gatsby": "^3.0.1",
     "gatsby-plugin-manifest": "^3.0.0",

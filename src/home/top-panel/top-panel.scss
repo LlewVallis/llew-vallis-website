@@ -36,7 +36,7 @@
   height: 35vh;
   align-self: flex-end;
   margin-right: $margin;
-  padding-bottom: calc(#{$backdropHeight} * 0.1);
+  margin: 0 $margin calc(#{$backdropHeight} * 0.1) 0;
   user-select: none;
 }
 
