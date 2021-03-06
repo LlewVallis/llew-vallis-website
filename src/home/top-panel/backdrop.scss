@@ -1,7 +1,7 @@
 @import "../../theme.scss";
 
 .backdrop {
-  background-color: #181818;
+  background-color: $darkBackgroundColor;
   height: $backdropHeight;
   clip-path: url(#backdrop-clip);
 }
@@ -14,12 +14,6 @@
   top: 0.6vh;
   left: 0px;
   clip-path: url(#backdrop-clip);
-}
-
-.clip-path-svg {
-  position: absolute;
-  width: 0;
-  height: 0;
 }
 
 .backdrop-canvas {

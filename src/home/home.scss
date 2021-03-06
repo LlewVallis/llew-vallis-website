@@ -8,6 +8,8 @@
   text-align: justify;
   columns: 2;
   column-gap: 2rem;
+  orphans: 3;
+  widows: 3;
 }
 
 .heading-wrapper {

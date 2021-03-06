@@ -4,18 +4,24 @@ import TopPanel from "./top-panel/top-panel";
 import "./home.scss";
 
 import { react as About } from "./about.md";
+import Footer from "./footer";
 
 const Home = () => (
   <>
     <TopPanel />
 
     <main class="content">
-      <Heading>About me</Heading>
-      <About />
-
-      <Heading>Lets work together</Heading>
-      <WorkCaption />
+      <section>
+        <Heading>About me</Heading>
+        <About />
+      </section>
+      <section>
+        <Heading>Lets work together</Heading>
+        <WorkCaption />
+      </section>
     </main>
+
+    <Footer />
   </>
 );
 

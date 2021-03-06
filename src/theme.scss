@@ -1,5 +1,6 @@
 $color: #eee;
 $backgroundColor: #222;
+$darkBackgroundColor: #181818;
 $darkAccentColor: #121212;
 $linkColor: #35c7bb;
 $darkLinkColor: #1e948a;
@@ -13,3 +14,6 @@ $monospaceFont: "Source Code Pro", monospace;
 
 $margin: 10vw;
 $backdropHeight: max(50vh, 20rem);
+
+// Clip path needs to be changed when changing this
+$footerBackdropRatio: 3;
