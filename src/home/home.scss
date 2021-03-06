@@ -1,0 +1,29 @@
+@import "../theme.scss";
+
+.content {
+  margin: 2rem $margin 0 $margin;
+}
+
+.frontmatter-markdown {
+  text-align: justify;
+  columns: 2;
+  column-gap: 2rem;
+}
+
+.heading-wrapper {
+  margin: 3rem 0 1rem 0;
+}
+
+.heading {
+  display: inline;
+  font-family: $displayFont;
+  font-size: 3rem;
+  padding: 0 5px 0px 5px;
+  background: linear-gradient(to bottom, transparent 50%, $highlightColor 50%);
+}
+
+@media only screen and (max-width: 50rem) {
+  .frontmatter-markdown {
+    columns: 1;
+  }
+}

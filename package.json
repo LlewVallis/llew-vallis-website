@@ -14,6 +14,7 @@
   },
   "dependencies": {
     "@primer/octicons-react": "^12.1.0",
+    "frontmatter-markdown-loader": "^3.6.2",
     "gatsby": "^3.0.1",
     "gatsby-plugin-react-helmet": "^4.0.0",
     "gatsby-plugin-sass": "^4.0.0",
@@ -22,8 +23,6 @@
     "react-dom": "^17.0.1",
     "react-helmet": "^6.1.0",
     "react-sizeme": "^3.0.1",
-    "react-three-fiber": "^5.3.19",
-    "react-tsparticles": "^1.19.2",
     "sass": "^1.32.8"
   },
   "devDependencies": {

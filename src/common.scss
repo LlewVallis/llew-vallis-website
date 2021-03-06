@@ -1,10 +1,11 @@
 @import "./theme.scss";
 
 @import "/node_modules/normalize.css/normalize.css";
-@import url("https://fonts.googleapis.com/css2?family=Fredoka+One&family=Roboto&family=Source+Code+Pro&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Fredoka+One&family=Varela+Round&family=Source+Code+Pro&display=swap");
 
 body {
   font-family: $font;
+  font-size: 1.05rem;
   color: $color;
   background-color: $backgroundColor;
 }
@@ -13,6 +14,10 @@ h1 {
   font-family: $displayFont;
   font-size: 4rem;
   margin-bottom: 1.2rem;
+}
+
+p {
+  margin-top: 0;
 }
 
 a {

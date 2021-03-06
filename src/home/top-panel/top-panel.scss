@@ -14,16 +14,17 @@
   justify-content: center;
 }
 
-.social-links {
-  color: $linkColor;
+.social-links,
+.social-links a {
+  color: $darkLinkColor;
   font-family: $monospaceFont;
 }
 
 .social-link-line {
   width: fit-content;
   margin-bottom: 5px;
-  padding: 0px 5px 5px 5px;
-  background: linear-gradient(to bottom, transparent 5%, $color 5%);
+  padding: 2px 5px 2px 5px;
+  background-color: $color;
   border-radius: 5px;
 }
 
@@ -32,7 +33,7 @@
 }
 
 .portrait {
-  width: 20vw;
+  height: 35vh;
   align-self: flex-end;
   margin-right: $margin;
   padding-bottom: calc(#{$backdropHeight} * 0.1);
@@ -43,7 +44,7 @@
   flex-grow: 1;
 }
 
-@media only screen and (max-width: 50rem) {
+@media only screen and (max-width: 60rem) {
   .portrait,
   .backdrop-content-breaker {
     display: none;
