@@ -81,10 +81,10 @@ class MouseMovePublisher {
 
 const BackdropCanvas = ({ size, mouseMovePublisher }) => {
   const canvasRef = useRef();
-  const drawState = createDrawState();
 
   useEffect(() => {
     const ctx = canvasRef.current.getContext("2d");
+    const drawState = createDrawState();
 
     let animationFrameId;
 
@@ -106,7 +106,7 @@ const BackdropCanvas = ({ size, mouseMovePublisher }) => {
       window.cancelAnimationFrame(animationFrameId);
       mouseMovePublisher.unsubscribe(onMouseMove);
     };
-  }, [drawState, mouseMovePublisher]);
+  }, [mouseMovePublisher]);
 
   return (
     <canvas
