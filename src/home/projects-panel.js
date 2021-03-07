@@ -1,10 +1,10 @@
 import { StaticImage } from "gatsby-plugin-image";
 import React from "react";
 
-import { react as UrmwStats } from "../../text/urmw-stats.md"
-import { react as OpenMissileWars } from "../../text/open-missile-wars.md"
+import { react as UrmwStats } from "../../text/urmw-stats.md";
+import { react as OpenMissileWars } from "../../text/open-missile-wars.md";
 
-import "./projects-panel.scss"
+import "./projects-panel.scss";
 
 const headerClipPath = `
   M 0 0.9
@@ -65,7 +65,10 @@ const Project = ({ content: Content, children }) => (
 const PanelHeader = () => (
   <div className="projects-panel-header-container">
     <svg className="clip-path-svg">
-      <clipPath id="projects-panel-header-clip" clipPathUnits="objectBoundingBox">
+      <clipPath
+        id="projects-panel-header-clip"
+        clipPathUnits="objectBoundingBox"
+      >
         <path d={headerClipPath} />
       </clipPath>
     </svg>
@@ -82,7 +85,10 @@ const PanelHeader = () => (
 const PanelFooter = () => (
   <div className="projects-panel-footer-container">
     <svg className="clip-path-svg">
-      <clipPath id="projects-panel-footer-clip" clipPathUnits="objectBoundingBox">
+      <clipPath
+        id="projects-panel-footer-clip"
+        clipPathUnits="objectBoundingBox"
+      >
         <path d={footerClipPath} />
       </clipPath>
     </svg>
