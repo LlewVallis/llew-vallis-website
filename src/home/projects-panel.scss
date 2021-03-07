@@ -20,6 +20,9 @@ $projectMinWidth: 25rem;
 }
 
 .project {
+  display: flex;
+  flex-direction: column;
+
   max-width: 60vw;
   min-width: $projectMinWidth;
   background-color: $backgroundColor;
@@ -42,8 +45,29 @@ $projectMinWidth: 25rem;
 }
 
 .project-content {
+  flex-grow: 1;
   margin: 0 1rem;
+  margin-bottom: 0.75rem;
   text-align: justify;
+}
+
+.project ul {
+  display: flex;
+  justify-content: space-between;
+
+  list-style: none;
+  margin: 0 1rem;
+  padding: 0;
+}
+
+.project li {
+  margin-bottom: 0.75rem;
+}
+
+.link-icon {
+  color: $linkColor;
+  transform: translateY(-3px);
+  margin-right: 0.33rem;
 }
 
 .projects-panel-heading {

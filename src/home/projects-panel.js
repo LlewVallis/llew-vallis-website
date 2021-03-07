@@ -4,6 +4,8 @@ import React from "react";
 import { react as UrmwStats } from "../../text/urmw-stats.md";
 import { react as OpenMissileWars } from "../../text/open-missile-wars.md";
 
+import { GlobeIcon, CodeIcon } from "@primer/octicons-react";
+
 import "./projects-panel.scss";
 
 const headerClipPath = `
@@ -27,38 +29,70 @@ const ProjectsPanel = () => (
     <PanelHeader />
 
     <div className="projects-panel">
-      <Project content={UrmwStats}>
-        <StaticImage
-          className="project-image"
-          src="../../images/urmw-stats.png"
-          alt="URMW Stats screenshot"
-          loading="eager"
-          placeholder="blurred"
-        />
-      </Project>
+      <Project
+        image={
+          <StaticImage
+            className="project-image"
+            src="../../images/urmw-stats.png"
+            alt="URMW Stats screenshot"
+            loading="eager"
+            placeholder="blurred"
+          />
+        }
+        content={UrmwStats}
+        links={[
+          {
+            icon: CodeIcon,
+            name: "GitHub Repository",
+            href: "https://github.com/LlewVallis/UrmwStats",
+          },
+          { icon: GlobeIcon, name: "Website", href: "https://urmw.live" },
+        ]}
+      />
 
-      <Project content={OpenMissileWars}>
-        <StaticImage
-          className="project-image"
-          src="../../images/open-missile-wars.png"
-          alt="OpenMissileWars cover"
-          loading="eager"
-          placeholder="blurred"
-        />
-      </Project>
+      <Project
+        image={
+          <StaticImage
+            className="project-image"
+            src="../../images/open-missile-wars.png"
+            alt="OpenMissileWars cover"
+            loading="eager"
+            placeholder="blurred"
+          />
+        }
+        content={OpenMissileWars}
+        links={[
+          {
+            icon: CodeIcon,
+            name: "GitHub Repository",
+            href: "https://github.com/LlewVallis/OpenMissileWars",
+          },
+        ]}
+      />
     </div>
 
     <PanelFooter />
   </div>
 );
 
-const Project = ({ content: Content, children }) => (
+const Project = ({ image, content: Content, links }) => (
   <div className="project">
-    {children}
+    {image}
 
     <div className="project-content">
       <Content />
     </div>
+
+    <ul>
+      {links.map((link) => (
+        <li>
+          <link.icon className="link-icon" />
+          <a href={link.href} target="_blank" rel="noreferrer">
+            {link.name}
+          </a>
+        </li>
+      ))}
+    </ul>
   </div>
 );
 
