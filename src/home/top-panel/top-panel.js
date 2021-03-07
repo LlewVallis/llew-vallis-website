@@ -3,7 +3,7 @@ import Backdrop from "./backdrop";
 
 import { MailIcon, MarkGithubIcon } from "@primer/octicons-react";
 
-import Portrait from "./portrait.svg";
+import Portrait from "../../../images/portrait.svg";
 
 import "./top-panel.scss";
 

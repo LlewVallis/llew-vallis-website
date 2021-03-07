@@ -66,43 +66,41 @@ const Contact = () => {
   const disabled = state !== "pending";
 
   return (
-    <div className="contact-container">
-      <form onSubmit={onSubmit} className={`state-${state}`}>
-        <label>
-          Subject
-          <input
-            ref={subjectRef}
-            disabled={disabled}
-            type="text"
-            placeholder="Your subject line"
-          />
-        </label>
+    <form onSubmit={onSubmit} className={`state-${state}`}>
+      <label>
+        Subject
+        <input
+          ref={subjectRef}
+          disabled={disabled}
+          type="text"
+          placeholder="Your subject line"
+        />
+      </label>
 
-        <label>
-          Reply Email (required)
-          <input
-            ref={emailRef}
-            disabled={disabled}
-            required
-            type="email"
-            placeholder="The address for me to reply to"
-          />
-        </label>
+      <label>
+        Reply Email (required)
+        <input
+          ref={emailRef}
+          disabled={disabled}
+          required
+          type="email"
+          placeholder="The address for me to reply to"
+        />
+      </label>
 
-        <label>
-          Message (required)
-          <textarea
-            ref={messageRef}
-            disabled={disabled}
-            required
-            rows="10"
-            placeholder="The message you'd like to send"
-          />
-        </label>
+      <label>
+        Message (required)
+        <textarea
+          ref={messageRef}
+          disabled={disabled}
+          required
+          rows="10"
+          placeholder="The message you'd like to send"
+        />
+      </label>
 
-        <button type="submit">{buttonText}</button>
-      </form>
-    </div>
+      <button type="submit">{buttonText}</button>
+    </form>
   );
 };
 

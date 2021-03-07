@@ -3,22 +3,28 @@ import TopPanel from "./top-panel/top-panel";
 
 import "./home.scss";
 
-import { react as About } from "./about.md";
+import { react as About } from "../../text/about.md";
 import Footer from "./footer";
 import Work from "./work";
+import ProjectsPanel from "./projects-panel";
 
 const Home = () => (
   <>
     <TopPanel />
 
     <main className="content">
-      <section>
+      <section className="about-container">
         <Heading>About me</Heading>
         <About />
       </section>
-      <section>
-        <Heading>Hire or contact me</Heading>
-        <Work />
+
+      <ProjectsPanel />
+
+      <section className="work-container">
+        <div>
+          <Heading>Hire or contact me</Heading>
+          <Work />
+        </div>
       </section>
     </main>
 

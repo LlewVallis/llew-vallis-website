@@ -11,4 +11,4 @@ As far as tooling goes, I know all the usual suspects: Docker, Git, Linux, Vim, 
 I have no problem working with servers remotely with nothing but a shell.
 In terms of databases, I'm familiar with Postgres and MongoDB.
 
-I'm fascinated by cutting-edge programming language design and have dabbled with parsing, program transformation, JVM bytecode, and LLVM. Modern programming techniques and robust type systems are of special interest to me; so I love reading up on the ins and outs of the theory of programming in the languages I use and in some I don't.
+I'm fascinated by cutting-edge programming language design and have dabbled with parsing, program transformation, JVM bytecode, and LLVM. Modern programming techniques and robust type systems are of special interest to me; so I love reading up on the ins and outs of the theory of the languages I use and in some I don't.

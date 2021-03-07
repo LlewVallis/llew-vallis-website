@@ -1,12 +1,6 @@
 @import "../theme.scss";
 
-.contact-container {
-  display: flex;
-}
-
 form {
-  max-width: 40rem;
-  flex-grow: 1;
   margin: 2rem auto 0 auto;
   font-family: $monospaceFont;
 }
