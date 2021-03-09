@@ -17,6 +17,8 @@ const Page = ({ children }) => (
       <meta property="og:description" content={description} />
 
       <meta property="og:type" content="website" />
+
+      <meta name="google-site-verification" content="EJKkgIFwAZidhcmL9HfBmjGG_qaDeQgIWmSQHusaEWU" />
     </Helmet>
 
     {children}
