@@ -9,9 +9,9 @@ const description =
 const Page = ({ children }) => (
   <>
     <Helmet>
-      <title>Llew Vallis</title>
-      <meta property="og:title" content="Llew Vallis" />
-      <meta name="twitter:title" content="Llew Vallis" />
+      <title>Llew Vallis | Software Developer</title>
+      <meta property="og:title" content="Llew Vallis | Software Developer" />
+      <meta name="twitter:title" content="Llew Vallis | Software Developer" />
 
       <meta name="description" content={description} />
       <meta property="og:description" content={description} />

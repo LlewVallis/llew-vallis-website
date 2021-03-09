@@ -3,8 +3,10 @@ import React from "react";
 
 import { react as UrmwStats } from "../../text/urmw-stats.md";
 import { react as OpenMissileWars } from "../../text/open-missile-wars.md";
+import { react as Skillbot } from "../../text/skillbot.md";
+import { react as LudumDare } from "../../text/ludum-dare.md";
 
-import { GlobeIcon, CodeIcon } from "@primer/octicons-react";
+import { GlobeIcon, CodeIcon, CrossReferenceIcon } from "@primer/octicons-react";
 
 import "./projects-panel.scss";
 
@@ -66,6 +68,46 @@ const ProjectsPanel = () => (
             icon: CodeIcon,
             name: "GitHub Repository",
             href: "https://github.com/LlewVallis/OpenMissileWars",
+          },
+        ]}
+      />
+
+      <Project
+        image={
+          <StaticImage
+            className="project-image"
+            src="../../images/ludum-dare.png"
+            alt="Ludum Dare cover"
+            loading="eager"
+            placeholder="blurred"
+          />
+        }
+        content={LudumDare}
+        links={[
+          {
+            icon: CrossReferenceIcon,
+            name: "Games list",
+            href: "https://ldjam.com/users/surprisinglyshockedcat/games",
+          },
+        ]}
+      />
+
+      <Project
+        image={
+          <StaticImage
+            className="project-image"
+            src="../../images/skillbot.png"
+            alt="Skillbot cover"
+            loading="eager"
+            placeholder="blurred"
+          />
+        }
+        content={Skillbot}
+        links={[
+          {
+            icon: CodeIcon,
+            name: "GitHub Repository",
+            href: "https://github.com/LlewVallis/Skillbot",
           },
         ]}
       />
