@@ -1,6 +1,6 @@
 ### Skillbot
 
-Skillbot is a fairly minimal rating system capable of calculating player rankings for arbirary two team games.
-Under the hood, it uses the [Trueskill](https://trueskill.org/) rating system and stores player and match data in a Postgres database.
+Skillbot is a rating system capable of calculating player rankings for any team game, from chess, to soccer and everything in between.
+Under the hood, it makes use of the Trueskill rating system, backed by a Postgres database to store match and player data reliably.
 
-Skillbot is fairly small application, but I used it as a foundation for learning Spring Boot, Spring Data, and database connectivity.
+Skillbot integrates into Discord to provide a helpful user experience and has been used in practice by people seeking to set up their own communities.
