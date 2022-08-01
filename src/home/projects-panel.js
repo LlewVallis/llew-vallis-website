@@ -2,7 +2,9 @@ import { StaticImage } from "gatsby-plugin-image";
 import React from "react";
 
 import { react as UrmwStats } from "../../text/urmw-stats.md";
+import { react as DungeonDemons } from "../../text/dungeon-demons.md";
 import { react as OpenMissileWars } from "../../text/open-missile-wars.md";
+import { react as TourneyBase } from "../../text/tourney-base.md";
 import { react as Skillbot } from "../../text/skillbot.md";
 import { react as LudumDare } from "../../text/ludum-dare.md";
 
@@ -36,7 +38,7 @@ const ProjectsPanel = () => (
           <StaticImage
             className="project-image"
             src="../../images/urmw-stats.png"
-            alt="URMW Stats screenshot"
+            alt="URMW Stats cover"
             loading="eager"
             placeholder="blurred"
           />
@@ -56,6 +58,26 @@ const ProjectsPanel = () => (
         image={
           <StaticImage
             className="project-image"
+            src="../../images/dungeon-demons.png"
+            alt="Dungeon Demons cover"
+            loading="eager"
+            placeholder="blurred"
+          />
+        }
+        content={DungeonDemons}
+        links={[
+          { 
+            icon: GlobeIcon,
+            name: "Website",
+            href: "https://dungeon-demons.netlify.app",
+          },
+        ]}
+      />
+
+      <Project
+        image={
+          <StaticImage
+            className="project-image"
             src="../../images/open-missile-wars.png"
             alt="OpenMissileWars cover"
             loading="eager"
@@ -68,6 +90,26 @@ const ProjectsPanel = () => (
             icon: CodeIcon,
             name: "GitHub Repository",
             href: "https://github.com/LlewVallis/OpenMissileWars",
+          },
+        ]}
+      />
+
+      <Project
+        image={
+          <StaticImage
+            className="project-image"
+            src="../../images/tourney-base.png"
+            alt="Tourney Base cover"
+            loading="eager"
+            placeholder="blurred"
+          />
+        }
+        content={TourneyBase}
+        links={[
+          { 
+            icon: GlobeIcon,
+            name: "Website",
+            href: "https://tourney-base.vercel.app",
           },
         ]}
       />

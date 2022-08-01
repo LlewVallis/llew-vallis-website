@@ -6,10 +6,8 @@
 
 .about-container .frontmatter-markdown {
   text-align: justify;
-  columns: 2;
-  column-gap: 2rem;
-  orphans: 3;
-  widows: 3;
+  max-width: 60rem;
+  margin: 0 auto;
 }
 
 .heading-wrapper {

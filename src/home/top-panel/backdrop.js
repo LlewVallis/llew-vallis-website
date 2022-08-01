@@ -125,7 +125,7 @@ const BackdropCanvas = ({ size, mouseMovePublisher }) => {
 const createDrawState = () => {
   const points = [];
 
-  for (let i = 0; i < 1000; i++) {
+  for (let i = 0; i < 2000; i++) {
     points.push(generatePoint());
   }
 
@@ -166,8 +166,8 @@ const createDrawState = () => {
 };
 
 const generatePoint = () => {
-  const x = Math.random() * 2 - 0.5;
-  const y = Math.random() * 2 - 0.5;
+  const x = Math.random() * 3 - 1.0;
+  const y = Math.random() * 3 - 1.0;
   const z = Math.random() * (farZ - nearZ) + nearZ;
 
   const wanderDistanceX = (Math.random() / 2 + 0.75) * pointWanderDistance;
