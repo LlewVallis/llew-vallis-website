@@ -50,7 +50,7 @@ const ProjectsPanel = () => (
             name: "GitHub Repository",
             href: "https://github.com/LlewVallis/UrmwStats",
           },
-          { icon: GlobeIcon, name: "Website", href: "https://urmw.live" },
+          { icon: GlobeIcon, name: "Website", href: "https://urmw.markng.me" },
         ]}
       />
 
