@@ -4,9 +4,11 @@ import BackgroundAnimation from "./background-animation";
 export default function Hero() {
   return (
     <div
-      className="h-[450px] relative text-neutral-100 bg-gradient-to-r from-rose-500 to-pink-500"
+      className="h-[450px] relative text-neutral-100"
       style={{
         clipPath: "polygon(0% 0%, 100% 0, 100% calc(100% - 5vw), 0% 100%)",
+        background:
+          "radial-gradient(circle at top left, #ec4899 0%, #8b5cf6 100%)",
       }}
     >
       <Layer>
@@ -14,6 +16,9 @@ export default function Hero() {
       </Layer>
       <Layer>
         <Content />
+      </Layer>
+      <Layer>
+        <Shadow />
       </Layer>
     </div>
   );
@@ -27,10 +32,21 @@ function Layer({ children }: { children: ReactNode }) {
   );
 }
 
+function Shadow() {
+  return (
+    <div
+      className="h-full"
+      style={{
+        background: "linear-gradient(-2.86deg, black 0%, transparent 20%)",
+      }}
+    />
+  );
+}
+
 function Content() {
   return (
     <div className="flex flex-col justify-center h-[85%] mx-20 text-center md:text-left">
-      <h1 className="fredoka font-bold text-8xl select-none">
+      <h1 className="fredoka font-bold text-8xl select-none drop-shadow">
         <div>Hey,</div>
         <div>I&apos;m Llew.</div>
       </h1>
