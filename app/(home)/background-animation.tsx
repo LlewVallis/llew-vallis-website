@@ -22,6 +22,8 @@ const MAX_WANDER_OFFSET = Math.PI * 2;
 const MOUSE_PUSH_SIZE = 0.05;
 const MOUSE_PUSH_STRENGTH = 0.0075;
 
+const TRANSITION_TIME = 1.5;
+
 export default function BackgroundAnimation() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -34,9 +36,9 @@ export default function BackgroundAnimation() {
   return (
     <canvas
       ref={canvasRef}
-      className="w-full h-full opacity-0 transition-opacity duration-[2.5s]"
+      className="w-full h-full"
       style={{
-        mask: "linear-gradient(to right, transparent, black)",
+        mask: "linear-gradient(to right, transparent 100%, black 100%)",
       }}
     />
   );
@@ -59,6 +61,9 @@ class CanvasAnimation {
 
   private mouseX: number = 0;
   private mouseY: number = 0;
+
+  private lastTime: number | null = null;
+  private transitionProgress: number = 0;
 
   constructor(private readonly canvas: HTMLCanvasElement) {
     this.ctx = canvas.getContext("2d")!!;
@@ -112,8 +117,17 @@ class CanvasAnimation {
   private frame(): void {
     this.frameCallback = requestAnimationFrame(() => this.frame());
 
-    this.canvas.style.opacity = "1";
+    this.resizeCanvas();
 
+    const maxDim = this.calculateMaxDim();
+    this.resetDrawingContext(maxDim);
+
+    const time = performance.now() / 1000;
+    this.transition(time);
+    this.draw(time, maxDim);
+  }
+
+  private resizeCanvas() {
     if (this.canvas.width !== this.canvas.clientWidth) {
       this.canvas.width = this.canvas.clientWidth;
     }
@@ -121,13 +135,17 @@ class CanvasAnimation {
     if (this.canvas.height !== this.canvas.clientHeight) {
       this.canvas.height = this.canvas.clientHeight;
     }
+  }
 
-    const maxDim = Math.max(
+  private calculateMaxDim(): number {
+    return Math.max(
       this.canvas.width,
       this.canvas.height,
       SCALING_THRESHOLD,
     );
+  }
 
+  private resetDrawingContext(maxDim: number): void {
     this.ctx.resetTransform();
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     this.ctx.scale(maxDim, maxDim);
@@ -135,8 +153,22 @@ class CanvasAnimation {
     this.ctx.fillStyle = "white";
     this.ctx.strokeStyle = "rgba(255, 255, 255, 0.5)";
     this.ctx.lineWidth = LINE_SCALE;
+  }
 
-    const time = performance.now() / 1000;
+  private transition(time: number): void {
+    if (this.lastTime !== null && this.transitionProgress < 1) {
+      const delta = time - this.lastTime;
+      this.transitionProgress = Math.min(this.transitionProgress + delta / TRANSITION_TIME, 1);
+
+      const percent = (1 - this.transitionProgress) * 100;
+      const alpha = this.transitionProgress;
+      this.canvas.style.mask = `linear-gradient(60deg, transparent ${percent}%, rgba(0, 0, 0, ${alpha}))`;
+    }
+
+    this.lastTime = time;
+  }
+
+  private draw(time: number, maxDim: number): void {
     const rect = this.canvas.getBoundingClientRect();
 
     const mouseX = (this.mouseX - rect.left) / maxDim;
