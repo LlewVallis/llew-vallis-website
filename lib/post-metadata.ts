@@ -3,6 +3,7 @@
 import fs from "fs/promises";
 import path from "path";
 import matter from "gray-matter";
+import sharp from "sharp";
 
 const POSTS_DIR = "app/posts";
 const SLUG_REGEX = /^[a-z0-9-]+(\/[a-z0-9-]+)*$/;
@@ -19,6 +20,15 @@ export interface Post {
   published: Date;
   lastModified: Date;
   keywords: string[];
+  wordCount: number;
+  cover?: PostCover;
+}
+
+export interface PostCover {
+  path: string;
+  blur: string;
+  width: number;
+  height: number;
 }
 
 export default async function loadPostMetadata(): Promise<Posts> {
@@ -66,8 +76,8 @@ async function loadPost(filePath: string): Promise<Post> {
     throw new Error(`invalid slug '${slug}}'`);
   }
 
-  const content = await fs.readFile(filePath).then((buf) => buf.toString());
-  const { data } = matter(content);
+  const file = await fs.readFile(filePath).then((buf) => buf.toString());
+  const { data, content } = matter(file);
 
   if (data.slug !== slug) {
     throw new Error("wrong slug");
@@ -99,12 +109,45 @@ async function loadPost(filePath: string): Promise<Post> {
     }
   }
 
-  return {
+  if (data.cover !== undefined && typeof data.cover !== "string") {
+    throw new Error("invalid cover path");
+  }
+
+  const wordCount = content.match(/\b\w+\b/gi)?.length ?? 0;
+
+  const result: Post = {
     slug,
     title: data.title,
     description: data.description,
     published: data.published,
     lastModified: data.lastModified ?? data.published,
     keywords: (data.keywords ?? []).toSorted(),
+    wordCount: wordCount,
+  };
+
+  if (data.cover !== undefined) {
+    result.cover = await loadCover(slug, data.cover);
+  }
+
+  return result;
+}
+
+async function loadCover(slug: string, name: string): Promise<PostCover> {
+  const imagePath = path.join("public/posts", slug, name);
+  const imageData = await fs.readFile(imagePath);
+
+  const image = sharp(imageData);
+
+  const metadata = await image.metadata();
+
+  const blurBuffer = await image.resize(32).jpeg().toBuffer();
+
+  const base64 = blurBuffer.toString("base64");
+
+  return {
+    path: "/" + path.join("posts", slug, name),
+    blur: `data:image/jpeg;base64,${base64}`,
+    width: metadata.width ?? 0,
+    height: metadata.height ?? 0,
   };
 }

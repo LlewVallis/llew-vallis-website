@@ -28,7 +28,7 @@ export default function BackgroundAnimation() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
-    const canvas = canvasRef.current!!;
+    const canvas = canvasRef.current!;
     const animation = new CanvasAnimation(canvas);
     return () => animation.stop();
   }, []);
@@ -66,7 +66,7 @@ class CanvasAnimation {
   private transitionProgress: number = 0;
 
   constructor(private readonly canvas: HTMLCanvasElement) {
-    this.ctx = canvas.getContext("2d")!!;
+    this.ctx = canvas.getContext("2d")!;
     this.frameCallback = requestAnimationFrame(() => this.frame());
 
     this.mouseMove = this.mouseMove.bind(this);

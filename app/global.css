@@ -10,3 +10,19 @@ body {
 .fredoka {
   font-family: var(--font-fredoka);
 }
+
+.pad-page {
+  margin: 10px 20px;
+}
+
+@media (min-width: 640px) {
+  .pad-page {
+    margin: 20px 40px;
+  }
+}
+
+@media (min-width: 768px) {
+  .pad-page {
+    margin: 40px 80px;
+  }
+}

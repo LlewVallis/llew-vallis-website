@@ -72,7 +72,7 @@ function Header({
   setSearchTerm: (term: string) => void;
 }) {
   return (
-    <div className="flex flex-col md:flex-row gap-4 justify-between items-center py-4 border-b border-stone-400 border-dashed">
+    <div className="flex flex-col md:flex-row gap-4 justify-between items-center pb-4 border-b border-stone-400 border-dashed">
       <h1 className="text-nowrap fredoka font-semibold text-5xl">Blog posts</h1>
       <div className="flex flex-col md:flex-row gap-4">
         <SortMode disabled={disableSort} setSortMode={setSortMode} />

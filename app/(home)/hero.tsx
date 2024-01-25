@@ -1,5 +1,7 @@
 import { ReactNode } from "react";
-import BackgroundAnimation from "./background-animation";
+import dynamic from "next/dynamic";
+
+const BackgroundAnimation = dynamic(() => import("./background-animation"));
 
 export default function Hero() {
   return (

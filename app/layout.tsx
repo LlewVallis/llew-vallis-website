@@ -32,7 +32,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${inter.variable} ${fredoka.variable}`}>
-      <body className="overflow-hidden">
+      <body className="overflow-x-hidden">
         <Header />
         {children}
       </body>

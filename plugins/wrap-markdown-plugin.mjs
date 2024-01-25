@@ -67,13 +67,22 @@ const SNIPPET = {
                     type: "JSXAttribute",
                     name: {
                       type: "JSXIdentifier",
-                      name: "metadata",
+                      name: "slug",
                     },
                     value: {
                       type: "JSXExpressionContainer",
                       expression: {
-                        type: "Identifier",
-                        name: "metadata",
+                        type: "MemberExpression",
+                        object: {
+                          type: "Identifier",
+                          name: "frontmatter",
+                        },
+                        property: {
+                          type: "Identifier",
+                          name: "slug",
+                        },
+                        computed: false,
+                        optional: false,
                       },
                     },
                   },

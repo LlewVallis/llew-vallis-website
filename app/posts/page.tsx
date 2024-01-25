@@ -12,7 +12,7 @@ export default async function Page() {
   const posts = await loadPostMetadata();
 
   return (
-    <main className="mx-20 mt-10">
+    <main className="pad-page">
       <Posts posts={posts} />
     </main>
   );

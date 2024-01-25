@@ -1,18 +1,26 @@
-pre {
+.md-content {
+  text-align: justify;
+}
+
+.md-content p {
+  margin: 10px 0;
+}
+
+.md-content pre {
   overflow-x: auto;
 }
 
-pre *::selection,
-code *::selection {
+.md-content *::selection,
+.md-content *::selection {
   background: rgb(210, 210, 210) !important;
 }
 
-.code-highlight {
+.md-content .code-highlight {
   float: left;
   min-width: 100%;
 }
 
-.code-line {
+.md-content .code-line {
   display: block;
   padding-left: 16px;
   padding-right: 16px;
@@ -21,22 +29,22 @@ code *::selection {
   border-left-width: 4px;
 }
 
-.code-line.inserted {
+.md-content .code-line.inserted {
   background-color: rgba(16, 185, 129, 20%);
 }
 
-.code-line.deleted {
+.md-content .code-line.deleted {
   background-color: rgba(239, 68, 68, 20%);
 }
 
-.highlight-line {
+.md-content .highlight-line {
   margin-left: -16px;
   margin-right: -16px;
   background-color: rgba(179, 194, 219, 0.2);
   border-left: 4px solid rgb(49, 170, 226);
 }
 
-.line-number::before {
+.md-content .line-number::before {
   display: inline-block;
   width: 1rem;
   text-align: right;
