@@ -1,8 +1,9 @@
 "use client";
 
 import { Post, Posts } from "@/lib/post-metadata";
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import Fuse from "fuse.js";
+import Link from "next/link";
 
 type SortMode = "newest" | "oldest" | "alphabetical";
 
@@ -10,7 +11,7 @@ export default function Posts({ posts }: { posts: Posts }) {
   const [sortMode, setSortMode] = useState<SortMode>("newest");
   const [searchTerm, setSearchTerm] = useState("");
 
-  const filteredPosts = useMemo(
+  const sortedPosts = useMemo(
     () => sortPosts(Object.values(posts.bySlug), sortMode, searchTerm),
     [posts, sortMode, searchTerm],
   );
@@ -23,7 +24,7 @@ export default function Posts({ posts }: { posts: Posts }) {
         setSearchTerm={setSearchTerm}
       />
 
-      {JSON.stringify(filteredPosts)}
+      <PostList posts={sortedPosts} />
     </>
   );
 }
@@ -33,7 +34,7 @@ function sortPosts(posts: Post[], mode: SortMode, search: string): Post[] {
     const preSorted = sortByKey(posts, (post) => post.published).reverse();
 
     const fuse = new Fuse(preSorted, {
-      keys: [{ name: "title", weight: 2 }, "description", "tags"],
+      keys: [{ name: "title", weight: 2 }, "description", "keywords"],
       threshold: 0.35,
     });
 
@@ -71,9 +72,9 @@ function Header({
   setSearchTerm: (term: string) => void;
 }) {
   return (
-    <div className="flex justify-between items-center border-b-2 border-dotted">
-      <h1 className="fredoka font-semibold text-6xl">Blog posts</h1>
-      <div className="flex gap-4">
+    <div className="flex flex-col md:flex-row gap-4 justify-between items-center py-4 border-b border-stone-400 border-dashed">
+      <h1 className="text-nowrap fredoka font-semibold text-5xl">Blog posts</h1>
+      <div className="flex flex-col md:flex-row gap-4">
         <SortMode disabled={disableSort} setSortMode={setSortMode} />
         <Search setSearchTerm={setSearchTerm} />
       </div>
@@ -92,7 +93,7 @@ function SortMode({
     <select
       onChange={(e) => setSortMode(e.currentTarget.value as SortMode)}
       disabled={disabled}
-      className="h-10 px-2 border rounded-lg bg-stone-200"
+      className="h-10 px-2 rounded-lg bg-stone-200 shadow cursor-pointer"
     >
       <option value="newest">Newest first</option>
       <option value="oldest">Oldest first</option>
@@ -106,7 +107,32 @@ function Search({ setSearchTerm }: { setSearchTerm: (term: string) => void }) {
     <input
       onChange={(e) => setSearchTerm(e.currentTarget.value.trim())}
       placeholder="Search posts"
-      className="h-10 px-2 border rounded-lg bg-stone-200"
+      className="h-10 px-2 rounded-lg bg-stone-200 shadow"
     />
+  );
+}
+
+function PostList({ posts }: { posts: Post[] }) {
+  return (
+    <div className="grid my-4 gap-4 grid-cols-1 xl:grid-cols-2">
+      {posts.map((post) => (
+        <PostCard key={post.slug} post={post} />
+      ))}
+    </div>
+  );
+}
+
+function PostCard({ post }: { post: Post }) {
+  return (
+    <Link
+      href={`/posts/${post.slug}`}
+      className="block h-80 p-4 rounded bg-stone-200 shadow transition duration-100 hover:-translate-y-[2px] hover:scale-[100.25%]"
+    >
+      <h2 className="fredoka text-xl mb-4 border-b border-stone-400 border-dashed">
+        {post.title}
+      </h2>
+
+      <p className="text-sm">{post.description}</p>
+    </Link>
   );
 }

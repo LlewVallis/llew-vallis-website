@@ -9,7 +9,7 @@ const SLUG_REGEX = /^[a-z0-9-]+(\/[a-z0-9-]+)*$/;
 
 export interface Posts {
   bySlug: Record<string, Post>;
-  byTag: Record<string, string[]>;
+  byKeyword: Record<string, string[]>;
 }
 
 export interface Post {
@@ -18,13 +18,13 @@ export interface Post {
   description: string;
   published: Date;
   lastModified: Date;
-  tags: string[];
+  keywords: string[];
 }
 
 export default async function loadPostMetadata(): Promise<Posts> {
   const results: Posts = {
     bySlug: {},
-    byTag: {},
+    byKeyword: {},
   };
 
   const files = await fs.readdir(POSTS_DIR, {
@@ -47,12 +47,12 @@ export default async function loadPostMetadata(): Promise<Posts> {
 
     results.bySlug[post.slug] = post;
 
-    for (const tag of post.tags) {
-      if (!(tag in results.byTag)) {
-        results.byTag[tag] = [];
+    for (const keyword of post.keywords) {
+      if (!(keyword in results.byKeyword)) {
+        results.byKeyword[keyword] = [];
       }
 
-      results.byTag[tag].push(post.slug);
+      results.byKeyword[keyword].push(post.slug);
     }
   }
 
@@ -89,8 +89,8 @@ async function loadPost(filePath: string): Promise<Post> {
     throw new Error("invalid last modified time");
   }
 
-  if (data.tags !== undefined && !(data.tags instanceof Array)) {
-    throw new Error("invalid tags");
+  if (data.keywords !== undefined && !(data.keywords instanceof Array)) {
+    throw new Error("invalid keywords");
   }
 
   for (const tag of data.tags ?? []) {
@@ -105,6 +105,6 @@ async function loadPost(filePath: string): Promise<Post> {
     description: data.description,
     published: data.published,
     lastModified: data.lastModified ?? data.published,
-    tags: (data.tags ?? []).toSorted(),
+    keywords: (data.keywords ?? []).toSorted(),
   };
 }

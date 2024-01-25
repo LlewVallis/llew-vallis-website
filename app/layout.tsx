@@ -15,8 +15,14 @@ const fredoka = Fredoka({
 });
 
 export const metadata: Metadata = {
-  title: "Llew Vallis",
-  description: "Llew Vallis' website",
+  title: {
+    default: "Llew's site",
+    template: "%s | Llew's site",
+  },
+  description: "Llew's personal website and blog.",
+  authors: { name: "Llew Vallis" },
+  generator: "Next.js",
+  keywords: ["blog"],
 };
 
 export default function RootLayout({
@@ -26,7 +32,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${inter.variable} ${fredoka.variable}`}>
-      <body>
+      <body className="overflow-hidden">
         <Header />
         {children}
       </body>
