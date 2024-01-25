@@ -5,7 +5,7 @@ import path from "path";
 import matter from "gray-matter";
 
 const POSTS_DIR = "app/posts";
-const SLUG_REGEX = /^[a-z-]+(\/[a-z-]+)*$/;
+const SLUG_REGEX = /^[a-z0-9-]+(\/[a-z0-9-]+)*$/;
 
 export interface Posts {
   bySlug: Record<string, Post>;
@@ -16,9 +16,8 @@ export interface Post {
   slug: string;
   title: string;
   description: string;
-  published: string;
-  lastModified: string;
-  series?: string;
+  published: Date;
+  lastModified: Date;
   tags: string[];
 }
 
@@ -104,8 +103,8 @@ async function loadPost(filePath: string): Promise<Post> {
     slug,
     title: data.title,
     description: data.description,
-    published: data.published.toISOString(),
-    lastModified: (data.lastModified ?? data.published).toISOString(),
-    tags: data.tags ?? [],
+    published: data.published,
+    lastModified: data.lastModified ?? data.published,
+    tags: (data.tags ?? []).toSorted(),
   };
 }

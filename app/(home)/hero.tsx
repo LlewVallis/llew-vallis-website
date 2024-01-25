@@ -46,7 +46,7 @@ function Shadow() {
     <div
       className="h-full"
       style={{
-        background: `${top}, ${bottom}`
+        background: `${top}, ${bottom}`,
       }}
     />
   );

@@ -138,11 +138,7 @@ class CanvasAnimation {
   }
 
   private calculateMaxDim(): number {
-    return Math.max(
-      this.canvas.width,
-      this.canvas.height,
-      SCALING_THRESHOLD,
-    );
+    return Math.max(this.canvas.width, this.canvas.height, SCALING_THRESHOLD);
   }
 
   private resetDrawingContext(maxDim: number): void {
@@ -158,7 +154,10 @@ class CanvasAnimation {
   private transition(time: number): void {
     if (this.lastTime !== null && this.transitionProgress < 1) {
       const delta = time - this.lastTime;
-      this.transitionProgress = Math.min(this.transitionProgress + delta / TRANSITION_TIME, 1);
+      this.transitionProgress = Math.min(
+        this.transitionProgress + delta / TRANSITION_TIME,
+        1,
+      );
 
       const percent = (1 - this.transitionProgress) * 100;
       const alpha = this.transitionProgress;
