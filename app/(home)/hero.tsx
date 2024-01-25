@@ -34,14 +34,19 @@ function Layer({ children }: { children: ReactNode }) {
 
 function Shadow() {
   const color = "rgba(0, 0, 0, 0.1)";
+  const size = "10px";
+
+  const top = `linear-gradient(to bottom, ${color}, transparent ${size})`;
+
   const blackPoint = "calc(0.05 * 100vw)";
-  const fadePoint = "calc(0.05 * 100vw + 10px)";
+  const fadePoint = `calc(0.05 * 100vw + ${size})`;
+  const bottom = `linear-gradient(-2.8624deg, ${color} ${blackPoint}, transparent ${fadePoint})`;
 
   return (
     <div
       className="h-full"
       style={{
-        background: `linear-gradient(-2.8624deg, ${color} ${blackPoint}, transparent ${fadePoint})`,
+        background: `${top}, ${bottom}`
       }}
     />
   );

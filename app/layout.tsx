@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Fredoka, Inter } from "next/font/google";
 
 import "./global.css";
+import Header from "./header";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -25,7 +26,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${inter.variable} ${fredoka.variable}`}>
-      <body>{children}</body>
+      <body>
+        <Header />
+        {children}
+      </body>
     </html>
   );
 }
