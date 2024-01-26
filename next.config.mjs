@@ -9,6 +9,8 @@ import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeSlug from "rehype-slug";
 import rehypeStarryNight from "@microflash/rehype-starry-night";
 import exportMetdata from "./plugins/export-metadata.mjs";
+import demoteHeadings from "./plugins/demote-headings.mjs";
+import optimizeImages from "./plugins/optimize-images.mjs";
 
 /** @type {import("next").NextConfig} */
 const nextConfig = {
@@ -19,6 +21,8 @@ const withMDX = createMDX({
   options: {
     jsx: true,
     remarkPlugins: [
+      demoteHeadings,
+      optimizeImages,
       remarkGfm,
       remarkMath,
       remarkFrontmatter,

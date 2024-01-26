@@ -22,10 +22,7 @@ export default function OptimizedImage({
   const ref = useRef<HTMLImageElement>(null);
 
   useEffect(() => {
-    const imageElement = ref.current!;
-    imageElement.src = image.src;
-    imageElement.style.transform = "";
-    imageElement.style.filter = "";
+    ref.current!.src = image.src;
   }, [image.src]);
 
   let height = "";
@@ -54,6 +51,11 @@ export default function OptimizedImage({
         ref={ref}
         src={image.blur}
         alt={image.alt}
+        onLoad={(e) => {
+          const imageElement = e.currentTarget;
+          imageElement.style.transform = "";
+          imageElement.style.filter = "";
+        }}
         style={{
           transform: "scale(1.05)",
           filter: "blur(16px)",

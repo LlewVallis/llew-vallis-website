@@ -3,8 +3,8 @@
 import fs from "fs/promises";
 import path from "path";
 import matter from "gray-matter";
-import sharp from "sharp";
 import { OptimizedImage } from "@/components/optimized-image";
+import { loadOptimizedImage } from "./image-optimize";
 
 const POSTS_DIR = "app/posts";
 const SLUG_REGEX = /^[a-z0-9-]+(\/[a-z0-9-]+)*$/;
@@ -124,30 +124,8 @@ async function loadPost(filePath: string): Promise<Post> {
   };
 
   if (data.cover !== undefined) {
-    result.cover = await loadCover(slug, data.cover, data.coverAlt);
+    result.cover = await loadOptimizedImage(slug, data.cover, data.coverAlt);
   }
 
   return result;
-}
-
-async function loadCover(
-  slug: string,
-  name: string,
-  alt: string,
-): Promise<OptimizedImage> {
-  const imagePath = path.join("public/posts", slug, name);
-  const imageData = await fs.readFile(imagePath);
-
-  const image = sharp(imageData);
-  const metadata = await image.metadata();
-  const blurBuffer = await image.resize(32).jpeg().toBuffer();
-  const base64 = blurBuffer.toString("base64");
-
-  return {
-    src: "/" + path.join("posts", slug, name),
-    blur: `data:image/jpeg;base64,${base64}`,
-    width: metadata.width ?? 0,
-    height: metadata.height ?? 0,
-    alt,
-  };
 }

@@ -7,56 +7,60 @@ export default function exportMetdata() {
 }
 
 const SNIPPET = {
-  type: "Program",
-  body: [
-    {
-      type: "ExportNamedDeclaration",
-      declaration: {
-        type: "VariableDeclaration",
-        declarations: [
-          {
-            type: "VariableDeclarator",
-            id: {
-              type: "Identifier",
-              name: "metadata",
-            },
-            init: {
-              type: "ObjectExpression",
-              properties: PROPAGATE.map((field) => [
-                {
-                  type: "Property",
-                  method: false,
-                  shorthand: false,
-                  computed: false,
-                  key: {
-                    type: "Identifier",
-                    name: field,
-                  },
-                  value: {
-                    type: "MemberExpression",
-                    object: {
-                      type: "Identifier",
-                      name: "frontmatter",
-                    },
-                    property: {
+  type: "mdxjsEsm",
+  value: "",
+  data: {
+    estree: {
+      type: "Program",
+      body: [
+        {
+          type: "ExportNamedDeclaration",
+          declaration: {
+            type: "VariableDeclaration",
+            declarations: [
+              {
+                type: "VariableDeclarator",
+                id: {
+                  type: "Identifier",
+                  name: "metadata",
+                },
+                init: {
+                  type: "ObjectExpression",
+                  properties: PROPAGATE.map((field) => ({
+                    type: "Property",
+                    method: false,
+                    shorthand: false,
+                    computed: false,
+                    key: {
                       type: "Identifier",
                       name: field,
                     },
-                    computed: false,
-                    optional: false,
-                  },
-                  kind: "init",
+                    value: {
+                      type: "MemberExpression",
+                      object: {
+                        type: "Identifier",
+                        name: "frontmatter",
+                      },
+                      property: {
+                        type: "Identifier",
+                        name: field,
+                      },
+                      computed: false,
+                      optional: false,
+                    },
+                    kind: "init",
+                  })),
                 },
-              ]),
-            },
+              },
+            ],
+            kind: "const",
           },
-        ],
-        kind: "const",
-      },
-      specifiers: [],
-      source: null,
+          specifiers: [],
+          source: null,
+        },
+      ],
+      sourceType: "module",
+      comments: [],
     },
-  ],
-  sourceType: "module",
-  comments: [],
+  },
 };

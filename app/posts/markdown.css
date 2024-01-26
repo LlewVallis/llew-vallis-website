@@ -2,7 +2,7 @@
   text-align: justify;
 }
 
-.md-content :is(pre, .highlight, .katex-display, h1, h2, h3, h4, h5, h6) {
+.md-content :is(p, pre, .highlight, .katex-display, h1, h2, h3, h4, h5, h6) {
   margin: 10px 0;
 }
 
@@ -15,7 +15,9 @@
   color: white;
   background-color: #292524;
   border-radius: 0.25rem;
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+  box-shadow:
+    0 1px 3px 0 rgba(0, 0, 0, 0.1),
+    0 1px 2px -1px rgba(0, 0, 0, 0.1);
 }
 
 .md-content .highlight-header {
@@ -25,7 +27,7 @@
 .md-content .highlight-header:not(:has(.highlight-caption)) {
   position: absolute;
   top: 0.5rem;
-  right: 1rem;;
+  right: 1rem;
 }
 
 .md-content .highlight-header:has(.highlight-caption) {
@@ -38,11 +40,11 @@
 }
 
 .md-content .highlight-language {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco,
-    Consolas, "Liberation Mono", "Courier New", monospace;
-  
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
+
   font-weight: 600;
-  
+
   background-color: #db2777;
   border-radius: 0.25rem;
   padding: 0 0.5em;
@@ -67,7 +69,7 @@
   padding: 0 1rem;
 }
 
-.md-content .highlight .line[data-highlighted=true] {
+.md-content .highlight .line[data-highlighted="true"] {
   background-color: rgba(255, 255, 255, 0.1);
 }
 
