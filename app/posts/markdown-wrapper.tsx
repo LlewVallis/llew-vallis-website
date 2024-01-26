@@ -3,6 +3,13 @@ import { ReactNode } from "react";
 import PostInfo from "./post-info";
 import OptimizedImage from "../../components/optimized-image";
 
+import "./markdown.css";
+
+import "katex/dist/katex.css";
+
+import "@wooorm/starry-night/style/core";
+import "@wooorm/starry-night/style/dark";
+
 export default async function MarkdownWrapper({
   children,
   slug,

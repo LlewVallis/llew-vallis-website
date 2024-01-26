@@ -1,0 +1,81 @@
+.md-content p {
+  text-align: justify;
+}
+
+.md-content :is(pre, .highlight, .katex-display, h1, h2, h3, h4, h5, h6) {
+  margin: 10px 0;
+}
+
+.md-content .highlight pre {
+  margin: 0;
+}
+
+.md-content .highlight {
+  position: relative;
+  color: white;
+  background-color: #292524;
+  border-radius: 0.25rem;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+}
+
+.md-content .highlight-header {
+  user-select: none;
+}
+
+.md-content .highlight-header:not(:has(.highlight-caption)) {
+  position: absolute;
+  top: 0.5rem;
+  right: 1rem;;
+}
+
+.md-content .highlight-header:has(.highlight-caption) {
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 1rem;
+  align-items: baseline;
+  padding: 0.5rem 1rem 0.25rem 1rem;
+  border-bottom: 1px solid #78716c;
+}
+
+.md-content .highlight-language {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco,
+    Consolas, "Liberation Mono", "Courier New", monospace;
+  
+  font-weight: 600;
+  
+  background-color: #db2777;
+  border-radius: 0.25rem;
+  padding: 0 0.5em;
+}
+
+.md-content .highlight-caption {
+  color: #e7e5e4;
+  flex-grow: 1;
+}
+
+.md-content .highlight pre {
+  padding: 1rem 0;
+  overflow-x: auto;
+}
+
+.md-content .highlight code {
+  display: flex;
+  flex-direction: column;
+}
+
+.md-content .highlight .line {
+  padding: 0 1rem;
+}
+
+.md-content .highlight .line[data-highlighted=true] {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.md-content .highlight .line-number {
+  display: inline-block;
+  user-select: none;
+  color: #a8a29e;
+  padding-right: 0.5rem;
+  border-right: 1px solid #78716c;
+  margin-right: 1rem;
+}

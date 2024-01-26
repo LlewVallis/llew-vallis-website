@@ -7,7 +7,7 @@ import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeSlug from "rehype-slug";
-import rehypePrism from "rehype-prism-plus";
+import rehypeStarryNight from "@microflash/rehype-starry-night";
 import exportMetdata from "./plugins/export-metadata.mjs";
 
 /** @type {import("next").NextConfig} */
@@ -28,7 +28,7 @@ const withMDX = createMDX({
     ],
     rehypePlugins: [
       rehypeKatex,
-      [rehypePrism, { showLineNumbers: true }],
+      rehypeStarryNight,
       rehypeSlug,
       rehypeAutolinkHeadings,
     ],
