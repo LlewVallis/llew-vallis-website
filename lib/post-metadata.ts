@@ -4,6 +4,7 @@ import fs from "fs/promises";
 import path from "path";
 import matter from "gray-matter";
 import sharp from "sharp";
+import { OptimizedImage } from "@/components/optimized-image";
 
 const POSTS_DIR = "app/posts";
 const SLUG_REGEX = /^[a-z0-9-]+(\/[a-z0-9-]+)*$/;
@@ -21,14 +22,7 @@ export interface Post {
   lastModified: Date;
   keywords: string[];
   wordCount: number;
-  cover?: PostCover;
-}
-
-export interface PostCover {
-  path: string;
-  blur: string;
-  width: number;
-  height: number;
+  cover?: OptimizedImage;
 }
 
 export default async function loadPostMetadata(): Promise<Posts> {
@@ -113,6 +107,10 @@ async function loadPost(filePath: string): Promise<Post> {
     throw new Error("invalid cover path");
   }
 
+  if (data.cover !== undefined && typeof data.coverAlt !== "string") {
+    throw new Error("invalid cover alt");
+  }
+
   const wordCount = content.match(/\b\w+\b/gi)?.length ?? 0;
 
   const result: Post = {
@@ -126,28 +124,30 @@ async function loadPost(filePath: string): Promise<Post> {
   };
 
   if (data.cover !== undefined) {
-    result.cover = await loadCover(slug, data.cover);
+    result.cover = await loadCover(slug, data.cover, data.coverAlt);
   }
 
   return result;
 }
 
-async function loadCover(slug: string, name: string): Promise<PostCover> {
+async function loadCover(
+  slug: string,
+  name: string,
+  alt: string,
+): Promise<OptimizedImage> {
   const imagePath = path.join("public/posts", slug, name);
   const imageData = await fs.readFile(imagePath);
 
   const image = sharp(imageData);
-
   const metadata = await image.metadata();
-
   const blurBuffer = await image.resize(32).jpeg().toBuffer();
-
   const base64 = blurBuffer.toString("base64");
 
   return {
-    path: "/" + path.join("posts", slug, name),
+    src: "/" + path.join("posts", slug, name),
     blur: `data:image/jpeg;base64,${base64}`,
     width: metadata.width ?? 0,
     height: metadata.height ?? 0,
+    alt,
   };
 }

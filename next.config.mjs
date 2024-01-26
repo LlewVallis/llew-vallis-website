@@ -19,18 +19,18 @@ const withMDX = createMDX({
   options: {
     jsx: true,
     remarkPlugins: [
-      remarkMath,
       remarkGfm,
+      remarkMath,
       remarkFrontmatter,
       remarkMdxFrontmatter,
       exportMetdata,
       wrapMarkdown,
     ],
     rehypePlugins: [
+      rehypeKatex,
       [rehypePrism, { showLineNumbers: true }],
       rehypeSlug,
       rehypeAutolinkHeadings,
-      rehypeKatex,
     ],
   },
 });

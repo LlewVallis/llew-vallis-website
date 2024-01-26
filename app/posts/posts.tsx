@@ -4,6 +4,8 @@ import { Post, Posts } from "@/lib/post-metadata";
 import { useMemo, useState } from "react";
 import Fuse from "fuse.js";
 import Link from "next/link";
+import OptimizedImage from "../../components/optimized-image";
+import PostInfo from "./post-info";
 
 type SortMode = "newest" | "oldest" | "alphabetical";
 
@@ -114,7 +116,7 @@ function Search({ setSearchTerm }: { setSearchTerm: (term: string) => void }) {
 
 function PostList({ posts }: { posts: Post[] }) {
   return (
-    <div className="grid my-4 gap-4 grid-cols-1 xl:grid-cols-2">
+    <div className="grid my-4 gap-4 xl:grid-cols-2">
       {posts.map((post) => (
         <PostCard key={post.slug} post={post} />
       ))}
@@ -126,13 +128,24 @@ function PostCard({ post }: { post: Post }) {
   return (
     <Link
       href={`/posts/${post.slug}`}
-      className="block h-80 p-4 rounded bg-stone-200 shadow transition duration-100 hover:-translate-y-[2px] hover:scale-[100.25%]"
+      className="block rounded overflow-hidden bg-stone-200 shadow transition duration-100 hover:-translate-y-[2px] hover:scale-[100.25%]"
     >
-      <h2 className="fredoka text-xl mb-4 border-b border-stone-400 border-dashed">
-        {post.title}
-      </h2>
+      <div className="flex justify-between aspect-[4/1]">
+        <div className="p-4 flex-grow">
+          <div className="flex justify-between mb-2 border-b border-stone-400 border-dashed">
+            <h2 className="fredoka font-medium text-lg">{post.title}</h2>
+            <PostInfo post={post} />
+          </div>
 
-      <p className="text-sm">{post.description}</p>
+          <div className="text-ellipsis">{post.description}</div>
+        </div>
+
+        {post.cover !== undefined ? (
+          <div className="w-[25%] aspect-square hidden md:block">
+            <OptimizedImage image={post.cover} mode="fill" />
+          </div>
+        ) : null}
+      </div>
     </Link>
   );
 }

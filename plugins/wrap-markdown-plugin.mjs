@@ -24,8 +24,8 @@ const SNIPPET = {
           ],
           source: {
             type: "Literal",
-            value: "@/components/markdown-wrapper",
-            raw: '"@/components/markdown-wrapper"',
+            value: "@/app/posts/markdown-wrapper",
+            raw: '"@/app/posts/markdown-wrapper"',
           },
         },
         {
