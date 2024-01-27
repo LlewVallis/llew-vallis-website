@@ -53,11 +53,9 @@ export default function OptimizedImage({
         alt={image.alt}
         onLoad={(e) => {
           const imageElement = e.currentTarget;
-          imageElement.style.transform = "";
           imageElement.style.filter = "";
         }}
         style={{
-          transform: "scale(1.05)",
           filter: "blur(16px)",
         }}
       />

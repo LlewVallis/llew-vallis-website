@@ -20,9 +20,10 @@ const MIN_WANDER_OFFSET = 0;
 const MAX_WANDER_OFFSET = Math.PI * 2;
 
 const MOUSE_PUSH_SIZE = 0.05;
-const MOUSE_PUSH_STRENGTH = 0.0075;
+const MOUSE_PUSH_STRENGTH = 0.01;
 
 const TRANSITION_TIME = 1.5;
+const DAMP_SPEED = 2;
 
 export default function BackgroundAnimation() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -45,7 +46,7 @@ export default function BackgroundAnimation() {
 }
 
 function lerp(x: number, low: number, high: number): number {
-  return x * (high - low) + low;
+  return low + (high - low) * x;
 }
 
 function random(low: number, high: number): number {
@@ -59,8 +60,11 @@ class CanvasAnimation {
   private readonly points: Point[] = [];
   private readonly edges: Edge[] = [];
 
-  private mouseX: number = 0;
-  private mouseY: number = 0;
+  private currentMouseX: number = 0;
+  private currentMouseY: number = 0;
+
+  private dampedMouseX: number = 0;
+  private dampedMouseY: number = 0;
 
   private lastTime: number | null = null;
   private transitionProgress: number = 0;
@@ -123,7 +127,11 @@ class CanvasAnimation {
     this.resetDrawingContext(maxDim);
 
     const time = performance.now() / 1000;
-    this.transition(time);
+    const delta = time - (this.lastTime ?? time);
+    this.lastTime = time;
+
+    this.transition(delta);
+    this.dampMouse(delta);
     this.draw(time, maxDim);
   }
 
@@ -151,9 +159,8 @@ class CanvasAnimation {
     this.ctx.lineWidth = LINE_SCALE;
   }
 
-  private transition(time: number): void {
-    if (this.lastTime !== null && this.transitionProgress < 1) {
-      const delta = time - this.lastTime;
+  private transition(delta: number): void {
+    if (this.transitionProgress < 1) {
       this.transitionProgress = Math.min(
         this.transitionProgress + delta / TRANSITION_TIME,
         1,
@@ -163,15 +170,19 @@ class CanvasAnimation {
       const alpha = this.transitionProgress;
       this.canvas.style.mask = `linear-gradient(60deg, transparent ${percent}%, rgba(0, 0, 0, ${alpha}))`;
     }
+  }
 
-    this.lastTime = time;
+  private dampMouse(delta: number) {
+    const amount = Math.min(delta * DAMP_SPEED, 1);
+    this.dampedMouseX = lerp(amount, this.dampedMouseX, this.currentMouseX);
+    this.dampedMouseY = lerp(amount, this.dampedMouseY, this.currentMouseY);
   }
 
   private draw(time: number, maxDim: number): void {
     const rect = this.canvas.getBoundingClientRect();
 
-    const mouseX = (this.mouseX - rect.left) / maxDim;
-    const mouseY = (this.mouseY - rect.top) / maxDim;
+    const mouseX = (this.dampedMouseX - rect.left) / maxDim;
+    const mouseY = (this.dampedMouseY - rect.top) / maxDim;
 
     for (const point of this.points) {
       point.wander(time, mouseX, mouseY);
@@ -183,8 +194,8 @@ class CanvasAnimation {
   }
 
   private mouseMove(e: MouseEvent): void {
-    this.mouseX = e.clientX;
-    this.mouseY = e.clientY;
+    this.currentMouseX = e.clientX;
+    this.currentMouseY = e.clientY;
   }
 
   stop(): void {

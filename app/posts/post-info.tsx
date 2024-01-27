@@ -10,9 +10,12 @@ export default function PostInfo({
   title?: boolean;
 }) {
   return (
-    <div className="w-full flex flex-wrap items-baseline gap-1 mb-1" style={{
-        rowGap: title ? "1rem" : "0.5rem"
-    }}>
+    <div
+      className="w-full flex flex-wrap items-baseline gap-1 mb-1"
+      style={{
+        rowGap: title ? "1rem" : "0.5rem",
+      }}
+    >
       <h2
         className="flex-grow fredoka font-medium"
         style={{

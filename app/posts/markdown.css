@@ -2,8 +2,75 @@
   text-align: justify;
 }
 
-.md-content :is(p, pre, .highlight, .katex-display, h1, h2, h3, h4, h5, h6) {
-  margin: 10px 0;
+.md-content :is(p, pre, blockquote, .highlight, .katex-display, h1, h2, h3, h4, h5, h6) {
+  margin: 1rem 0;
+}
+
+.md-content blockquote {
+  background-color: #e7e5e4;
+  padding: 0.125rem 1rem;
+  border-radius: 0.25rem;
+  box-shadow:
+    0 1px 3px 0 rgba(0, 0, 0, 0.1),
+    0 1px 2px -1px rgba(0, 0, 0, 0.1);
+}
+
+.md-content p a {
+  color: #db2777;
+  font-weight: 500;
+  text-decoration: underline;
+}
+
+.md-content :is(h1, h2, h3, h4, h5, h6) {
+  font-family: var(--font-fredoka);
+}
+
+.md-content :is(h1, h2, h3, h4, h5, h6) a {
+  display: block;
+  text-wrap: wrap;
+  padding-right: 1.5rem;
+}
+
+.md-content :is(h1, h2, h3, h4, h5, h6) a::after {
+  content: "";
+  margin-left: 0.5em;
+  padding-left: 1em;
+  background-image: url(/posts/link-icon.svg);
+  background-repeat: no-repeat;
+  background-position: center center;
+  visibility: hidden;
+}
+
+.md-content :is(h1, h2, h3, h4, h5, h6) a:hover::after {
+  visibility: visible;
+}
+
+/* We don't actually have h1 - all headings are demoted one level */
+.md-content :is(h1, h2) {
+  font-size: 1.75rem;
+  font-weight: 500;
+}
+
+.md-content h3 {
+  font-size: 1.4rem;
+  font-weight: 450;
+  color: #292524;
+}
+
+.md-content h4 {
+  font-size: 1.25rem;
+  font-weight: 450;
+  color: #44403c;
+}
+
+.md-content h5 {
+  font-size: 1.1rem;
+  color: #44403c;
+}
+
+.md-content h6 {
+  font-size: 1rem;
+  color: #44403c;
 }
 
 .md-content .highlight pre {
@@ -24,19 +91,22 @@
   user-select: none;
 }
 
-.md-content .highlight-header:not(:has(.highlight-caption)) {
-  position: absolute;
-  top: 0.5rem;
-  right: 0.5rem;
-}
-
-.md-content .highlight-header:has(.highlight-caption) {
+.md-content .highlight-header {
   display: flex;
   flex-direction: row-reverse;
   gap: 1rem;
   align-items: center;
   padding: 0.5rem 0.5rem 0.25rem 1rem;
   border-bottom: 1px solid #78716c;
+}
+
+@media (min-width: 768px) {
+  .md-content .highlight-header:not(:has(.highlight-caption)) {
+    position: absolute;
+    top: 0;
+    right: 0;
+    border: none;
+  }
 }
 
 .md-content .highlight-language {
@@ -56,15 +126,17 @@
   color: #e7e5e4;
   flex-grow: 1;
 }
-
+  
 .md-content .highlight pre {
-  padding: 1rem 0;
   overflow-x: auto;
+  padding: 1rem 0;
 }
 
 .md-content .highlight code {
   display: flex;
   flex-direction: column;
+  min-width: fit-content;
+  width: 100%;
 }
 
 .md-content .highlight .line {
