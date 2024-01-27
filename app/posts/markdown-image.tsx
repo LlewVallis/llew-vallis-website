@@ -19,7 +19,9 @@ export default async function MarkdownImage({
       <div className="rounded overflow-hidden shadow">
         <OptimizedImage image={image} mode="wide" />
       </div>
-      {title !== null ? <div className="mt-2 italic text-center">{title}</div> : null}
+      {title !== null ? (
+        <div className="mt-2 italic text-center">{title}</div>
+      ) : null}
     </div>
   );
 }

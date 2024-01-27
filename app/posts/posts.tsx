@@ -128,12 +128,11 @@ function PostCard({ post }: { post: Post }) {
   return (
     <Link
       href={`/posts/${post.slug}`}
-      className="block rounded overflow-hidden bg-stone-200 shadow transition duration-100 hover:-translate-y-[2px] hover:scale-[100.25%]"
+      className="block rounded overflow-hidden bg-stone-200 shadow transition duration-100 hover:-translate-y-[2px]"
     >
-      <div className="flex justify-between aspect-[4/1]">
+      <div className="flex h-[250px]">
         <div className="p-4 flex-grow">
-          <div className="flex justify-between mb-2 border-b border-stone-400 border-dashed">
-            <h2 className="fredoka font-medium text-lg">{post.title}</h2>
+          <div className="border-b border-dashed border-stone-400 mb-2">
             <PostInfo post={post} />
           </div>
 
@@ -141,7 +140,7 @@ function PostCard({ post }: { post: Post }) {
         </div>
 
         {post.cover !== undefined ? (
-          <div className="w-[25%] aspect-square hidden md:block">
+          <div className="aspect-square hidden md:block">
             <OptimizedImage image={post.cover} mode="fill" />
           </div>
         ) : null}
