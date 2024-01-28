@@ -3,7 +3,7 @@ import Link from "next/link";
 import OptimizedImage from "../../components/optimized-image";
 import PostInfo from "./post-info";
 
-export function PostCard({ post }: { post: Post; }) {
+export function PostCard({ post }: { post: Post }) {
   return (
     <Link
       href={`/posts/${post.slug}`}

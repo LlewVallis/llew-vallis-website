@@ -118,6 +118,12 @@ function PostList({ posts }: { posts: Post[] }) {
       {posts.map((post) => (
         <PostCard key={post.slug} post={post} />
       ))}
+
+      {posts.length === 0 ? (
+        <div className="col-span-2 text-center text-xl mt-10">
+          No results found
+        </div>
+      ) : null}
     </div>
   );
 }

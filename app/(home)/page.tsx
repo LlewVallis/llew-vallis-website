@@ -22,7 +22,7 @@ export default async function Page() {
             Check out my latest blog post
           </h2>
 
-          <PostCard post={latest} />
+          {latest ? <PostCard post={latest} /> : null}
         </div>
       </main>
     </>
