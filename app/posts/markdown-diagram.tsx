@@ -6,5 +6,10 @@ export default function MarkdownDiagram({
   const index = svgCode.match(/<svg/)?.index ?? 0;
   svgCode = svgCode.substring(index);
 
-  return <div className="flex justify-center my-4" dangerouslySetInnerHTML={{ __html: svgCode }} />;
+  return (
+    <div
+      className="flex justify-center my-4"
+      dangerouslySetInnerHTML={{ __html: svgCode }}
+    />
+  );
 }
