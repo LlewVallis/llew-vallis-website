@@ -11,6 +11,7 @@ import rehypeStarryNight from "@microflash/rehype-starry-night";
 import exportMetdata from "./plugins/export-metadata.mjs";
 import demoteHeadings from "./plugins/demote-headings.mjs";
 import optimizeImages from "./plugins/optimize-images.mjs";
+import buildDiagrams from "./plugins/build-diagrams.mjs";
 
 /** @type {import("next").NextConfig} */
 const nextConfig = {
@@ -23,6 +24,7 @@ const withMDX = createMDX({
     remarkPlugins: [
       demoteHeadings,
       optimizeImages,
+      buildDiagrams,
       remarkGfm,
       remarkMath,
       remarkFrontmatter,

@@ -17,6 +17,7 @@
     "@types/delaunator": "^5.0.2",
     "@types/mdx": "^2.0.10",
     "@types/poisson-disk-sampling": "^2.2.4",
+    "@viz-js/viz": "^3.2.4",
     "delaunator": "^5.0.0",
     "fuse.js": "^7.0.0",
     "gray-matter": "^4.0.3",
