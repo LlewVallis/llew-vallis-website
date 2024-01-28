@@ -34,9 +34,12 @@ const withMDX = createMDX({
       rehypeKatex,
       rehypeStarryNight,
       rehypeSlug,
-      [rehypeAutolinkHeadings, {
-        behavior: "wrap"
-      }],
+      [
+        rehypeAutolinkHeadings,
+        {
+          behavior: "wrap",
+        },
+      ],
     ],
   },
 });

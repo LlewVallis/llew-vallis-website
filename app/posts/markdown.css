@@ -2,7 +2,8 @@
   text-align: justify;
 }
 
-.md-content :is(p, pre, blockquote, .highlight, .katex-display, h1, h2, h3, h4, h5, h6) {
+.md-content
+  :is(p, pre, blockquote, .highlight, .katex-display, h1, h2, h3, h4, h5, h6) {
   margin: 1rem 0;
 }
 
@@ -18,6 +19,9 @@
 .md-content p a {
   color: #db2777;
   font-weight: 500;
+}
+
+.md-content p a:hover {
   text-decoration: underline;
 }
 
@@ -126,7 +130,7 @@
   color: #e7e5e4;
   flex-grow: 1;
 }
-  
+
 .md-content .highlight pre {
   overflow-x: auto;
   padding: 1rem 0;

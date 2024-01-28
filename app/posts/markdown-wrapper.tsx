@@ -39,8 +39,10 @@ export default async function MarkdownWrapper({
 
 function Header({ post }: { post: Post }) {
   return (
-    <div className="flex pb-2 mb-4 border-b border-dashed border-stone-400">
-      <PostInfo post={post} title />
+    <div className="pb-2 mb-4 border-b border-dashed border-stone-400">
+      <h1 className="fredoka font-semibold text-4xl mb-3">{post.title}</h1>
+
+      <PostInfo post={post} verboseDate />
     </div>
   );
 }

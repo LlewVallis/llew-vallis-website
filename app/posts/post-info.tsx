@@ -1,51 +1,58 @@
+"use client";
+
 import { Post } from "@/lib/post-metadata";
 import { wordsToMinutes } from "@/lib/reading-time";
-import { ReactNode } from "react";
 
 export default function PostInfo({
   post,
-  title = false,
+  verboseDate = false,
 }: {
   post: Post;
-  title?: boolean;
+  verboseDate?: boolean;
 }) {
+  const published = post.published.toLocaleDateString();
+  const edited = post.lastModified.toLocaleDateString();
+
   return (
-    <div
-      className="w-full flex flex-wrap items-baseline gap-1 mb-1"
-      style={{
-        rowGap: title ? "1rem" : "0.5rem",
-      }}
-    >
-      <h2
-        className="flex-grow fredoka font-medium"
-        style={{
-          fontSize: title ? "2rem" : "1.1rem",
-          lineHeight: title ? "2rem" : "1.1rem",
-        }}
-      >
-        {post.title}
-      </h2>
-
-      <div className="flex flex-wrap items-baseline">
-        <PostInfoElement>
-          {wordsToMinutes(post.wordCount)} minute read
-        </PostInfoElement>
-        <PostInfoElement>{post.published.toLocaleDateString()}</PostInfoElement>
-
-        {post.keywords.length > 0 ? (
-          <PostInfoElement>
-            <span className="capitalize">{post.keywords.join(", ")}</span>
-          </PostInfoElement>
-        ) : null}
+    <div className="flex flex-wrap gap-2 items-center">
+      <div className="flex flex-wrap grow">
+        {verboseDate ? (
+          <>
+            Published {published}
+            {edited !== published ? (
+              <>
+                <Divider />
+                Edited {edited}
+              </>
+            ) : null}
+          </>
+        ) : (
+          post.published.toLocaleDateString()
+        )}
+        <Divider />
+        {wordsToMinutes(post.wordCount)} minute read
       </div>
+
+      <PostKeywords keywords={post.keywords} />
     </div>
   );
 }
 
-function PostInfoElement({ children }: { children: ReactNode }) {
+function Divider() {
+  return <span className="mx-2 border-l border-stone-400" />;
+}
+
+function PostKeywords({ keywords: tags }: { keywords: string[] }) {
   return (
-    <div className="text-nowrap border-r border-stone-400 px-2 first:pl-0 last:pr-0 last:border-r-0 text-sm">
-      {children}
-    </div>
+    <span className="inline-flex flex-wrap justify-evenly gap-2">
+      {tags.map((tag) => (
+        <span
+          className="fredoka px-1 rounded uppercase text-white font-bold bg-pink-600"
+          key={tag}
+        >
+          {tag}
+        </span>
+      ))}
+    </span>
   );
 }

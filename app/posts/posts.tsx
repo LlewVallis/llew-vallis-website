@@ -116,7 +116,7 @@ function Search({ setSearchTerm }: { setSearchTerm: (term: string) => void }) {
 
 function PostList({ posts }: { posts: Post[] }) {
   return (
-    <div className="grid my-4 gap-4 xl:grid-cols-2">
+    <div className="grid my-4 gap-8 xl:grid-cols-2">
       {posts.map((post) => (
         <PostCard key={post.slug} post={post} />
       ))}
@@ -128,15 +128,25 @@ function PostCard({ post }: { post: Post }) {
   return (
     <Link
       href={`/posts/${post.slug}`}
-      className="block rounded overflow-hidden bg-stone-200 shadow transition duration-100 hover:-translate-y-[2px]"
+      className="block rounded overflow-hidden bg-stone-200 shadow transition hover:translate-y-[-4px]"
     >
       <div className="flex h-[250px]">
-        <div className="p-4 flex-grow">
-          <div className="border-b border-dashed border-stone-400 mb-2">
-            <PostInfo post={post} />
+        <div className="flex flex-col p-4 pb-2 flex-grow">
+          <div className="border-b border-dashed border-stone-400 pb-2 mb-2">
+            <h2 className="fredoka font-semibold text-lg mb-2">{post.title}</h2>
+
+            <div className="text-sm">
+              <PostInfo post={post} />
+            </div>
           </div>
 
-          <div className="text-ellipsis">{post.description}</div>
+          <p className="line-clamp-4">{post.description}</p>
+
+          <div className="flex-grow" />
+
+          <div className="text-center text-pink-600 font-semibold select-none">
+            Read more &#10230;
+          </div>
         </div>
 
         {post.cover !== undefined ? (
