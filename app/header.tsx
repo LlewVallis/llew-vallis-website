@@ -17,7 +17,7 @@ export default function Header() {
               <Image src={Icon} alt="" fill />
             </div>
             <span className="fredoka font-semibold text-stone-700">
-              Llew's site
+              Llew&apos;s site
             </span>
           </Link>
         </div>
