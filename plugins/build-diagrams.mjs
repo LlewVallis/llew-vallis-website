@@ -8,6 +8,8 @@ export default function buildDiagrams() {
     ast.children.unshift(structuredClone(IMPORT_SNIPPET));
 
     visit(ast, "code", (ast) => {
+      if (ast.lang !== "diagram") return;
+
       const svg = viz.renderString(ast.value, {
         format: "svg",
         graphAttributes: {
