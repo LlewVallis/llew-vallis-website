@@ -25,6 +25,24 @@
   text-decoration: underline;
 }
 
+.md-content ul {
+  list-style: disc;
+  margin-left: 1.5rem;
+}
+
+.md-content ol {
+  list-style: decimal;
+  margin-left: 1.5rem;
+}
+
+.md-content li::marker {
+  display: block;
+}
+
+.md-content li > p {
+  text-align: left;
+}
+
 .md-content :is(h1, h2, h3, h4, h5, h6) {
   font-family: var(--font-fredoka);
 }

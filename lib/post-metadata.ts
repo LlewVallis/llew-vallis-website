@@ -6,7 +6,7 @@ import matter from "gray-matter";
 import { OptimizedImage } from "@/components/optimized-image";
 import { loadOptimizedImage } from "./image-optimize";
 
-const POSTS_DIR = "app/posts";
+const POSTS_DIR = "app/posts/(posts)";
 const SLUG_REGEX = /^[a-z0-9-]+(\/[a-z0-9-]+)*$/;
 
 export interface Posts {

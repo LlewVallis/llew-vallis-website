@@ -16,6 +16,10 @@ import buildDiagrams from "./plugins/build-diagrams.mjs";
 /** @type {import("next").NextConfig} */
 const nextConfig = {
   pageExtensions: ["tsx", "mdx"],
+  webpack: (config) => {
+    config.resolve.symlinks = false;
+    return config;
+  },
 };
 
 const withMDX = createMDX({
