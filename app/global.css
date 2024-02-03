@@ -17,6 +17,7 @@ body {
 
 .pad-page {
   margin: 10px 20px;
+  overflow-x: hidden;
 }
 
 @media (min-width: 640px) {
